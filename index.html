@@ -15,7 +15,11 @@
     <div class="max-w-2xl mx-auto space-y-6">
         <div class="bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-slate-200">
             <div class="p-8 md:p-12 text-center">
-                <h1 class="text-4xl font-black tracking-tight mb-2 text-slate-800">How's My Air?</h1>
+                
+                <div class="flex flex-col items-center mb-6">
+                    <img src="logo.jpg" alt="How's My Air? Logo" class="w-64 h-auto">
+                </div>
+
                 <div id="location-text" class="text-blue-600 font-semibold uppercase tracking-widest text-sm mb-6">Real-time air quality for any city</div>
 
                 <div class="flex flex-col md:flex-row gap-2 mb-8">
@@ -27,7 +31,7 @@
                     </button>
                 </div>
                 
-                <div id="time-stamp" class="text-[10px] text-slate-400 uppercase mb-4 hidden tracking-widest">Updated: --</div>
+                <div id="time-stamp" class="text-[10px] text-slate-400 uppercase mb-4 hidden tracking-widest text-center">Updated: --</div>
 
                 <div id="aqi-display" class="hidden animate-results">
                     <div id="aqi-circle" class="w-44 h-44 rounded-full mx-auto flex flex-col items-center justify-center mb-6 border-[14px] bg-slate-50 transition-all duration-700 shadow-inner">
@@ -48,45 +52,31 @@
                         <div class="grid grid-cols-1 gap-3">
                             <div class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100">
                                 <div class="flex-1 pr-4">
-                                    <p class="text-xs font-bold text-slate-800 uppercase flex items-center gap-1">
-                                        PM2.5 <span class="text-[10px] font-normal text-slate-400 lowercase">(fine particles)</span>
-                                    </p>
-                                    <p class="text-[11px] text-slate-500 leading-tight mt-1">Tiny soot/smoke particles that can bypass the lungs and enter the bloodstream.</p>
+                                    <p class="text-xs font-bold text-slate-800 uppercase">PM2.5 (Fine Particles)</p>
+                                    <p class="text-[11px] text-slate-500 leading-tight">Tiny particles that can enter the bloodstream.</p>
                                 </div>
-                                <div class="text-right">
-                                    <p id="val-pm25" class="text-2xl font-black text-slate-700">--</p>
-                                </div>
+                                <p id="val-pm25" class="text-2xl font-black text-slate-700">--</p>
                             </div>
-                            
                             <div class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100">
                                 <div class="flex-1 pr-4">
-                                    <p class="text-xs font-bold text-slate-800 uppercase flex items-center gap-1">
-                                        PM10 <span class="text-[10px] font-normal text-slate-400 lowercase">(coarse particles)</span>
-                                    </p>
-                                    <p class="text-[11px] text-slate-500 leading-tight mt-1">Larger particles like dust and pollen. Can irritate eyes, nose, and throat.</p>
+                                    <p class="text-xs font-bold text-slate-800 uppercase">PM10 (Dust & Pollen)</p>
+                                    <p class="text-[11px] text-slate-500 leading-tight">Larger particles that irritate eyes and throat.</p>
                                 </div>
-                                <div class="text-right">
-                                    <p id="val-pm10" class="text-2xl font-black text-slate-700">--</p>
-                                </div>
+                                <p id="val-pm10" class="text-2xl font-black text-slate-700">--</p>
                             </div>
-                            
                             <div class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100">
                                 <div class="flex-1 pr-4">
-                                    <p class="text-xs font-bold text-slate-800 uppercase flex items-center gap-1">
-                                        NO2 <span class="text-[10px] font-normal text-slate-400 lowercase">(nitrogen dioxide)</span>
-                                    </p>
-                                    <p class="text-[11px] text-slate-500 leading-tight mt-1">Gas primarily from car engines. Known to inflame airways and trigger asthma.</p>
+                                    <p class="text-xs font-bold text-slate-800 uppercase">NO2 (Traffic Exhaust)</p>
+                                    <p class="text-[11px] text-slate-500 leading-tight">Gas that can inflame airways and trigger asthma.</p>
                                 </div>
-                                <div class="text-right">
-                                    <p id="val-no2" class="text-2xl font-black text-slate-700">--</p>
-                                </div>
+                                <p id="val-no2" class="text-2xl font-black text-slate-700">--</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div id="initial-actions" class="flex flex-col gap-3 mt-6">
-                    <p class="text-slate-400 text-xs">OR</p>
+                    <p class="text-slate-400 text-xs text-center">OR</p>
                     <button onclick="getAirQuality('here')" id="detect-btn" class="text-slate-600 font-bold hover:text-blue-600 transition-colors">
                         📍 Use My Current Location
                     </button>
@@ -94,7 +84,7 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-3xl p-8 shadow-lg border border-slate-200">
+                <div class="bg-white rounded-3xl p-8 shadow-lg border border-slate-200">
             <h3 class="text-xl font-bold mb-4 text-slate-800">AQI Safety Scale</h3>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
                 <div class="p-3 rounded-xl bg-green-50 border border-green-100 text-center">
@@ -158,8 +148,8 @@
                 updateUI(data.aqi);
             } else {
                 display.classList.add('hidden');
-                locationText.innerText = "⚠️ Station offline or invalid data. Try a different city.";
-                locationText.className = "text-red-500 font-bold text-sm mb-6 bg-red-50 p-4 rounded-xl";
+                locationText.innerText = "⚠️ Station offline or invalid data. Try a larger nearby city.";
+                locationText.className = "text-red-500 font-bold text-sm mb-6 bg-red-50 p-4 rounded-xl shadow-sm";
                 initialActions.classList.remove('hidden');
             }
         } catch (error) {
@@ -178,7 +168,7 @@
         if (aqi <= 50) {
             status.innerText = "Healthy";
             status.className = "text-3xl font-bold text-green-600";
-            desc.innerText = "Air is clear. Perfect for outdoor exercise or opening the windows.";
+            desc.innerText = "Air is clear. Perfect for outdoor exercise or opening windows.";
             circle.style.borderColor = "#22c55e";
         } else if (aqi <= 100) {
             status.innerText = "Moderate";
