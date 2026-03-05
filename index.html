@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breathe Easy | Local Air Quality</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen flex items-center justify-center p-4">
+
+    <div class="max-w-md w-full bg-white rounded-3xl shadow-xl p-8 text-center">
+        <h1 class="text-3xl font-bold text-slate-800 mb-2">Breathe Easy</h1>
+        <p class="text-slate-500 mb-8">Real-time air quality for your exact location.</p>
+
+        <div id="aqi-display" class="hidden">
+            <div id="aqi-circle" class="w-32 h-32 rounded-full mx-auto flex flex-col items-center justify-center mb-6 border-8">
+                <span id="aqi-value" class="text-4xl font-black">--</span>
+                <span class="text-xs uppercase font-bold">AQI</span>
+            </div>
+            <h2 id="aqi-status" class="text-2xl font-bold mb-2 text-slate-800">Loading...</h2>
+            <p id="aqi-desc" class="text-slate-600 text-sm mb-6"></p>
+        </div>
+
+        <button onclick="getAirQuality()" id="check-btn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-2xl transition-all shadow-lg active:scale-95">
+            Check My Air
+        </button>
+        
+        <p class="text-[10px] text-slate-400 mt-8">Data provided by WAQI Open Data Platform.</p>
+    </div>
+
+    <script>
+        async function getAirQuality() {
+            const btn = document.getElementById('check-btn');
+            const display = document.getElementById('aqi-display');
+            const token = "959c3e711f5d014c57766bebd8e507140b759683"; // Replace with your free token from aqicn.org/data-platform/token/
+
+            btn.innerText = "Locating...";
+            
+            try {
+                // Fetch AQI based on user's IP (Local)
+                const response = await fetch(`https://api.waqi.info/feed/here/?token=${token}`);
+                const result = await response.json();
+
+                if (result.status === "ok") {
+                    const aqi = result.data.aqi;
+                    display.classList.remove('hidden');
+                    btn.classList.add('hidden');
+                    
+                    document.getElementById('aqi-value').innerText = aqi;
+                    updateUI(aqi);
+                }
+            } catch (error) {
+                alert("Could not fetch data. Please check your connection.");
+                btn.innerText = "Try Again";
+            }
+        }
+
+        function updateUI(aqi) {
+            const circle = document.getElementById('aqi-circle');
+            const status = document.getElementById('aqi-status');
+            const desc = document.getElementById('aqi-desc');
+
+            if (aqi <= 50) {
+                status.innerText = "Good";
+                desc.innerText = "Air quality is satisfactory. Perfect for outdoor activities!";
+                circle.style.borderColor = "#22c55e"; // Green
+                circle.style.color = "#166534";
+            } else if (aqi <= 100) {
+                status.innerText = "Moderate";
+                desc.innerText = "Sensitive individuals should limit prolonged outdoor exertion.";
+                circle.style.borderColor = "#eab308"; // Yellow
+                circle.style.color = "#854d0e";
+            } else {
+                status.innerText = "Unhealthy";
+                desc.innerText = "Consider staying indoors or wearing a mask if outside.";
+                circle.style.borderColor = "#ef4444"; // Red
+                circle.style.color = "#991b1b";
+            }
+        }
+    </script>
+</body>
+</html>
