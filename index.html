@@ -50,15 +50,14 @@
             </div>
         </div>
 
-        
-
-[Image of air quality index scale]
-
-        <div class="bg-white rounded-3xl p-8 shadow-lg border border-slate-200">
-            <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
+        <div class="bg-white rounded-3xl p-8 shadow-lg border border-slate-200 overflow-hidden">
+            <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
                 <span class="bg-blue-100 text-blue-600 px-2 py-1 rounded text-sm">Guide</span>
                 What are you breathing?
             </h3>
+            
+            <img src="image_0.png" alt="Air Quality Index (AQI) Scale Chart showing categories: Good, Moderate, Unhealthy for Sensitive Groups, Unhealthy, Very Unhealthy, and Hazardous." class="w-full h-auto mb-8 rounded-2xl border border-slate-100 shadow-sm" />
+
             <div class="grid md:grid-cols-2 gap-6 text-sm text-slate-600">
                 <div>
                     <p class="font-bold text-slate-800 mb-1">PM2.5 & PM10</p>
@@ -73,7 +72,7 @@
     </div>
 
     <script>
-        // Use the token you provided
+        // Your specific token is implemented here
         const API_TOKEN = "959c3e711f5d014c57766bebd8e507140b759683";
 
         async function getAirQuality() {
@@ -118,7 +117,7 @@
             const desc = document.getElementById('aqi-desc');
             const trend = document.getElementById('trend-icon');
 
-            // Trend Logic (Visual Only for this session)
+            // Trend Logic (Simple based on current reading)
             trend.innerHTML = aqi > 100 ? "⚠️" : "🍃";
 
             if (aqi <= 50) {
