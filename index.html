@@ -14,7 +14,7 @@
         
         .loader {
             border: 4px solid #f3f3f3;
-            border-top: 4px solid #bde0fe; /* Pastel Blue */
+            border-top: 4px solid #bde0fe; 
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -22,12 +22,6 @@
             display: none;
         }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        /* Custom Pastel Backgrounds */
-        .bg-pastel-blue { background-color: #ebf5ff; }
-        .bg-pastel-green { background-color: #f0fdf4; }
-        .bg-pastel-yellow { background-color: #fefce8; }
-        .bg-pastel-red { background-color: #fff1f2; }
     </style>
 </head>
 <body class="bg-[#f8fafc] min-h-screen py-10 px-4 font-sans text-slate-700">
@@ -60,8 +54,8 @@
                 </div>
                 
                 <h2 id="aqi-status" class="text-2xl font-semibold mb-2">...</h2>
-                <div id="time-stamp" class="text-[10px] text-slate-400 uppercase mb-6 tracking-widest">--</div>
-                <p id="aqi-desc" class="text-slate-500 max-w-sm mx-auto leading-relaxed mb-8 text-sm"></p>
+                <div id="time-stamp" class="text-[10px] text-slate-400 uppercase mb-6 tracking-widest text-center">--</div>
+                <p id="aqi-desc" class="text-slate-500 max-w-sm mx-auto leading-relaxed mb-8 text-sm italic"></p>
 
                 <div class="border-t border-slate-50 pt-8 space-y-3 text-left">
                     <h3 class="text-[10px] font-bold text-slate-300 uppercase tracking-widest mb-4 text-center">Pollutant Breakdown</h3>
@@ -69,7 +63,7 @@
                     <div class="flex items-center justify-between p-4 bg-[#f1f5f9] rounded-2xl">
                         <div class="flex-1 pr-4">
                             <p class="text-xs font-semibold text-slate-600 uppercase">PM2.5</p>
-                            <p class="text-[10px] text-slate-400">Fine particles from combustion.</p>
+                            <p class="text-[10px] text-slate-400">Microscopic soot/smoke that can enter the bloodstream.</p>
                         </div>
                         <p id="val-pm25" class="text-xl font-bold text-slate-500">--</p>
                     </div>
@@ -77,7 +71,7 @@
                     <div class="flex items-center justify-between p-4 bg-[#f1f5f9] rounded-2xl">
                         <div class="flex-1 pr-4">
                             <p class="text-xs font-semibold text-slate-600 uppercase">PM10</p>
-                            <p class="text-[10px] text-slate-400">Coarse dust and pollen.</p>
+                            <p class="text-[10px] text-slate-400">Coarse dust and pollen that irritates the eyes and throat.</p>
                         </div>
                         <p id="val-pm10" class="text-xl font-bold text-slate-500">--</p>
                     </div>
@@ -85,7 +79,7 @@
                     <div class="flex items-center justify-between p-4 bg-[#f1f5f9] rounded-2xl">
                         <div class="flex-1 pr-4">
                             <p class="text-xs font-semibold text-slate-600 uppercase">NO2</p>
-                            <p class="text-[10px] text-slate-400">Traffic-related emissions.</p>
+                            <p class="text-[10px] text-slate-400">Traffic gas known to inflame airways and trigger asthma.</p>
                         </div>
                         <p id="val-no2" class="text-xl font-bold text-slate-500">--</p>
                     </div>
@@ -99,40 +93,51 @@
             </div>
         </section>
 
+        
         <section class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
-            <h3 class="text-sm font-bold mb-4 text-slate-400 uppercase tracking-widest text-center">Safety Scale</h3>
+            <h3 class="text-sm font-bold mb-4 text-slate-400 uppercase tracking-widest text-center">Safety Reference</h3>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <div class="p-3 rounded-xl bg-[#f0fdf4] text-center">
+                <div class="p-3 rounded-xl bg-[#f0fdf4] text-center border border-green-50">
                     <p class="text-green-600 font-bold text-xs">0-50</p>
                     <p class="text-[9px] uppercase font-bold text-green-400">Healthy</p>
                 </div>
-                <div class="p-3 rounded-xl bg-[#fefce8] text-center">
+                <div class="p-3 rounded-xl bg-[#fefce8] text-center border border-yellow-50">
                     <p class="text-yellow-600 font-bold text-xs">51-100</p>
                     <p class="text-[9px] uppercase font-bold text-yellow-400">Moderate</p>
                 </div>
-                <div class="p-3 rounded-xl bg-[#fff7ed] text-center">
+                <div class="p-3 rounded-xl bg-[#fff7ed] text-center border border-orange-50">
                     <p class="text-orange-600 font-bold text-xs">101-150</p>
                     <p class="text-[9px] uppercase font-bold text-orange-400">Sensitive</p>
                 </div>
-                <div class="p-3 rounded-xl bg-[#fff1f2] text-center">
+                <div class="p-3 rounded-xl bg-[#fff1f2] text-center border border-red-50">
                     <p class="text-red-600 font-bold text-xs">151+</p>
                     <p class="text-[9px] uppercase font-bold text-red-400">Unhealthy</p>
                 </div>
             </div>
         </section>
 
-        <section class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100 text-xs text-slate-400 leading-relaxed">
-             <div class="space-y-4">
+        <section class="bg-white rounded-3xl p-8 shadow-sm border border-slate-100">
+            <h3 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-6">Frequently Asked Questions</h3>
+            <div class="space-y-6 text-sm">
                 <div>
-                    <p class="font-bold text-slate-500 uppercase tracking-tighter mb-1">About the Data</p>
-                    <p>Measurements are pulled from the nearest official monitoring station. If a city doesn't appear, try searching for the nearest major metropolitan area.</p>
+                    <p class="font-bold text-slate-500 mb-2">What is PM2.5 and why is it dangerous?</p>
+                    <p class="text-slate-400 leading-relaxed">PM2.5 refers to fine particles less than 2.5 micrometers in diameter. Because they are so small, they can bypass your respiratory system's natural filters, entering your lungs and even your bloodstream, potentially causing heart and lung issues.</p>
+                </div>
+                
+                <div>
+                    <p class="font-bold text-slate-500 mb-2">When should I limit my time outdoors?</p>
+                    <p class="text-slate-400 leading-relaxed">If the AQI reaches the "Unhealthy" range (over 150), everyone should limit prolonged outdoor exertion. However, sensitive groups—like children, the elderly, or those with asthma—should take precautions once levels cross 100.</p>
+                </div>
+                <div>
+                    <p class="font-bold text-slate-500 mb-2">Where does this data come from?</p>
+                    <p class="text-slate-400 leading-relaxed">Our data is fetched in real-time from the nearest official government monitoring station via the WAQI API. If your specific city isn't listed, the app automatically finds the closest reporting station to give you the most accurate local estimate.</p>
                 </div>
             </div>
         </section>
     </main>
 
     <script>
-    const API_TOKEN = "959c3e711f5d014c57766bebd8e507140b759683";
+    const API_TOKEN = "959c3e711f5d014c57766bebd8e507140 b759683";
 
     async function getAirQuality(type) {
         const input = document.getElementById('city-input');
@@ -150,7 +155,7 @@
 
         loader.style.display = "block";
         display.classList.add('hidden');
-        locationText.innerText = "Finding your air...";
+        locationText.innerText = "Connecting to station...";
         
         try {
             const response = await fetch(url);
@@ -161,8 +166,8 @@
                 const data = result.data;
                 display.classList.remove('hidden');
                 
-                locationText.innerText = `${data.city.name}`;
-                timeStamp.innerText = `Updated: ${data.time.s}`;
+                locationText.innerText = `Station: ${data.city.name}`;
+                timeStamp.innerText = `Measured: ${data.time.s}`;
                 document.getElementById('aqi-value').innerText = data.aqi;
                 
                 document.getElementById('val-pm25').innerText = data.iaqi.pm25?.v || "-";
@@ -171,7 +176,8 @@
 
                 updateUI(data.aqi);
             } else {
-                locationText.innerText = "Station data unavailable. Try another city.";
+                locationText.innerText = "Station offline. Try a nearby city.";
+                locationText.className = "text-red-300 font-bold text-[10px] uppercase tracking-widest";
             }
         } catch (error) {
             loader.style.display = "none";
@@ -186,19 +192,19 @@
 
         if (aqi <= 50) {
             status.innerText = "Air is healthy";
-            status.className = "text-2xl font-semibold mb-2 text-green-500";
+            status.className = "text-2xl font-semibold mb-2 text-green-500/80";
             desc.innerText = "Conditions are perfect for outdoor time today.";
-            circle.style.borderColor = "#bbf7d0"; // Pastel Green
+            circle.style.borderColor = "#f0fdf4";
         } else if (aqi <= 100) {
             status.innerText = "Air is moderate";
-            status.className = "text-2xl font-semibold mb-2 text-yellow-500";
-            desc.innerText = "The air is okay, but sensitive groups should take care.";
-            circle.style.borderColor = "#fef08a"; // Pastel Yellow
+            status.className = "text-2xl font-semibold mb-2 text-yellow-500/80";
+            desc.innerText = "Acceptable air, but sensitive groups should take care.";
+            circle.style.borderColor = "#fefce8";
         } else {
             status.innerText = "Air is unhealthy";
-            status.className = "text-2xl font-semibold mb-2 text-red-400";
-            desc.innerText = "It's best to keep windows closed and limit outdoor exercise.";
-            circle.style.borderColor = "#fecdd3"; // Pastel Red
+            status.className = "text-2xl font-semibold mb-2 text-red-400/80";
+            desc.innerText = "Pollution detected. Best to limit outdoor exercise.";
+            circle.style.borderColor = "#fff1f2";
         }
     }
 
